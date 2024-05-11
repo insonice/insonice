@@ -11,6 +11,7 @@ const config = {
   /** Enables hot reloading for local packages without a build step */
   transpilePackages: [
     "@insonice/api",
+    "@insonice/trpc",
     "@insonice/auth",
     "@insonice/db",
     "@insonice/ui",

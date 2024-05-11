@@ -18,7 +18,7 @@ export const authConfig = {
     accountsTable: schema.accounts,
     sessionsTable: schema.sessions,
     verificationTokensTable: schema.verificationTokens,
-  }),
+  }) as any,
   providers: [Discord],
   callbacks: {
     session: (opts) => {

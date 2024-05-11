@@ -233,9 +233,12 @@ importers:
       '@insonice/validators':
         specifier: workspace:*
         version: link:../validators
-      '@trpc/server':
+      '@tanstack/react-query':
+        specifier: ^5.35.5
+        version: 5.35.5(react@18.3.1)
+      '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.366
+        version: 11.0.0-rc.366(@trpc/server@11.0.0-rc.366)
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
