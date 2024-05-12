@@ -1,8 +1,10 @@
 import type { DefaultSession, NextAuthConfig } from "next-auth";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import Discord from "next-auth/providers/discord";
 
-import { db, schema } from "@insonice/db";
+import { drizzleAuthAdapter } from "./adapters/drizzle";
+import { defaultCookies } from "./lib/cookie";
+import { providers } from "./providers";
+import { schema, eq, db } from "@insonice/db";
+import { omit } from "lodash";
 
 declare module "next-auth" {
   interface Session {
@@ -13,22 +15,41 @@ declare module "next-auth" {
 }
 
 export const authConfig = {
-  adapter: DrizzleAdapter(db, {
-    usersTable: schema.users,
-    accountsTable: schema.accounts,
-    sessionsTable: schema.sessions,
-    verificationTokensTable: schema.verificationTokens,
-  }) as any,
-  providers: [Discord],
+  adapter: drizzleAuthAdapter,
+  cookies: defaultCookies(),
+  providers,
+  session: {
+    strategy: "jwt",
+  },
+  secret: "niceai",
   callbacks: {
-    session: (opts) => {
-      if (!("user" in opts)) throw "unreachable with session strategy";
+    async jwt({ token, session }) {
+      if (!token.sub) return token;
+      const users = await db
+        .select()
+        .from(schema.users)
+        .where(eq(schema.users.id, token.sub))
+        .limit(1);
+      const user = omit(users[0], ["password"]);
+      return {
+        ...token,
+        session,
+        user,
+      };
+    },
+    session({ session, token, user }) {
+      if (token.user) {
+        return {
+          ...session,
+          user: token.user,
+        };
+      }
 
       return {
-        ...opts.session,
+        ...session,
         user: {
-          ...opts.session.user,
-          id: opts.user.id,
+          ...session.user,
+          id: user.id,
         },
       };
     },

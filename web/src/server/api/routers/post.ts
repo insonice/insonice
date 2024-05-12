@@ -5,7 +5,9 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { posts } from "~/server/db/schema";
+import { schema } from "@insonice/db";
+
+const { posts } = schema;
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -22,7 +24,7 @@ export const postRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(posts).values({
+      await ctx.db.insert(post).values({
         name: input.name,
         createdById: ctx.session.user.id,
       });

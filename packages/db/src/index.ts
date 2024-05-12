@@ -12,6 +12,7 @@ export const schema = { ...auth, ...post };
 
 const psClient = new Pool({
   connectionString: connectionStr.href,
+  log: console.log,
 });
 
 export const db = drizzle(psClient, { schema, logger: true });

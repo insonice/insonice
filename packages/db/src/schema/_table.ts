@@ -1,5 +1,6 @@
 import { pgTableCreator } from "drizzle-orm/pg-core";
 import { snakeCase } from "lodash";
+import { dbPrefix } from "../const";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM.
@@ -7,4 +8,4 @@ import { snakeCase } from "lodash";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const pgSqlTable = pgTableCreator((name) => `na_${snakeCase(name)}`);
+export const pgSqlTable = pgTableCreator((name) => `${dbPrefix}${snakeCase(name)}`);

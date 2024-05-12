@@ -1,6 +1,7 @@
 import type { Config } from "drizzle-kit";
 import { createEnv } from "@t3-oss/env-core";
 import * as z from "zod";
+import { dbPrefix } from "./const";
 
 const env = createEnv({
   server: {
@@ -12,11 +13,9 @@ const env = createEnv({
 
 export const connectionStr = new URL(env.DATABASE_URL);
 
-console.log("connectionStr", connectionStr.href);
-
 export default {
   schema: "./src/schema",
   dialect: "postgresql",
   dbCredentials: { url: connectionStr.href },
-  tablesFilter: ["*"],
+  tablesFilter: [`${dbPrefix}*`],
 } satisfies Config;
