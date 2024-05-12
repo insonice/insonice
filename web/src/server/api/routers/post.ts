@@ -7,8 +7,6 @@ import {
 } from "~/server/api/trpc";
 import { schema } from "@insonice/db";
 
-const { posts } = schema;
-
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
@@ -24,8 +22,11 @@ export const postRouter = createTRPCRouter({
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      await ctx.db.insert(post).values({
-        name: input.name,
+      console.log("creating post", input, ctx.session.user.id);
+
+      await ctx.db.insert(schema.posts).values({
+        title: input.name,
+        content: 'test',
         createdById: ctx.session.user.id,
       });
     }),
