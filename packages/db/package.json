@@ -25,6 +25,7 @@
     "@planetscale/database": "^1.18.0",
     "@t3-oss/env-core": "^0.10.1",
     "drizzle-orm": "^0.30.10",
+    "lodash": "^4.17.21",
     "pg": "^8.11.5",
     "zod": "^3.23.8"
   },
@@ -33,6 +34,7 @@
     "@insonice/prettier-config": "workspace:*",
     "@insonice/tsconfig": "workspace:*",
     "@types/pg": "^8.11.6",
+    "@types/lodash": "^4.17.1",
     "dotenv-cli": "^7.4.2",
     "drizzle-kit": "^0.21.1",
     "eslint": "^8.56.0",

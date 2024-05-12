@@ -18,5 +18,5 @@ export default {
   schema: "./src/schema",
   dialect: "postgresql",
   dbCredentials: { url: connectionStr.href },
-  tablesFilter: ["t3turbo_*"],
+  tablesFilter: ["*"],
 } satisfies Config;

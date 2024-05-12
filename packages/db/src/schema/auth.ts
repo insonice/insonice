@@ -14,9 +14,11 @@ export const users = pgSqlTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 255 }).notNull(),
-  emailVerified: timestamp("emailVerified", {
+  username: varchar("username", { length: 255 }),
+  emailVerified: timestamp("email_verified", {
     mode: "date",
   }).default(sql`CURRENT_TIMESTAMP(3)`),
+  password: varchar("password", { length: 255 }),
   image: varchar("image", { length: 255 }),
 });
 
@@ -32,7 +34,9 @@ export const accounts = pgSqlTable(
       .$type<"oauth" | "oidc" | "email">()
       .notNull(),
     provider: varchar("provider", { length: 255 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
+    providerAccountId: varchar("provider_account_id", {
+      length: 255,
+    }).notNull(),
     refresh_token: varchar("refresh_token", { length: 255 }),
     access_token: text("access_token"),
     expires_at: integer("expires_at"),
@@ -45,7 +49,7 @@ export const accounts = pgSqlTable(
     compoundKey: primaryKey({
       columns: [account.provider, account.providerAccountId],
     }),
-    userIdIdx: index("t3_userId_idx").on(account.userId),
+    userIdIdx: index("account_user_id_idx").on(account.userId),
   }),
 );
 
@@ -56,14 +60,14 @@ export const accountsRelations = relations(accounts, ({ one }) => ({
 export const sessions = pgSqlTable(
   "session",
   {
-    sessionToken: varchar("sessionToken", { length: 255 })
+    sessionToken: varchar("session_token", { length: 255 })
       .notNull()
       .primaryKey(),
-    userId: varchar("userId", { length: 255 }).notNull(),
+    userId: varchar("user_id", { length: 255 }).notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (session) => ({
-    userIdIdx: index("t3_session_userId_idx").on(session.userId),
+    userIdIdx: index("session_user_id_idx").on(session.userId),
   }),
 );
 
@@ -72,7 +76,7 @@ export const sessionsRelations = relations(sessions, ({ one }) => ({
 }));
 
 export const verificationTokens = pgSqlTable(
-  "verificationToken",
+  "verification_token",
   {
     identifier: varchar("identifier", { length: 255 }).notNull(),
     token: varchar("token", { length: 255 }).notNull(),
