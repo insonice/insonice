@@ -12,7 +12,6 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --write . --ignore-path ../../.gitignore",
     "lint": "eslint",
@@ -30,7 +29,7 @@
     "@insonice/eslint-config": "workspace:*",
     "@insonice/prettier-config": "workspace:*",
     "@insonice/tsconfig": "workspace:*",
-    "eslint": "^9.2.0",
+    "eslint": "^8.56.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
