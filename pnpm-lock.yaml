@@ -213,6 +213,9 @@ importers:
       '@insonice/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
+      '@types/pg':
+        specifier: ^8.11.6
+        version: 8.11.6
       eslint:
         specifier: ^8.56.0
         version: 8.57.0
