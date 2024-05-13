@@ -22,6 +22,8 @@
     "@insonice/auth": "workspace:*",
     "@insonice/db": "workspace:*",
     "@insonice/validators": "workspace:*",
+    "@trpc/server": "next",
+    "@trpc/react-query": "next",
     "@tanstack/react-query": "^5.35.5",
     "@trpc/client": "next",
     "superjson": "^2.2.1",

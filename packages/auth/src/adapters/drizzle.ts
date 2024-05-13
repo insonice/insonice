@@ -7,7 +7,7 @@ import type {
   AdapterUser,
   VerificationToken,
 } from "@auth/core/adapters";
-import { and, eq, getTableColumns } from "drizzle-orm";
+import { and, eq, getTableColumns } from "@insonice/db";
 
 import { db, schema } from "@insonice/db";
 

@@ -191,6 +191,12 @@ importers:
       '@trpc/client':
         specifier: next
         version: 11.0.0-rc.366(@trpc/server@11.0.0-rc.366)
+      '@trpc/react-query':
+        specifier: next
+        version: 11.0.0-rc.366(@tanstack/react-query@5.35.5(react@18.3.1))(@trpc/client@11.0.0-rc.366(@trpc/server@11.0.0-rc.366))(@trpc/server@11.0.0-rc.366)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@trpc/server':
+        specifier: next
+        version: 11.0.0-rc.366
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
