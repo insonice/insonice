@@ -11,13 +11,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --write . --ignore-path ../../.gitignore",
-    "lint": "eslint",
-    "push": "pnpm with-env drizzle-kit push --config src/config.ts",
-    "studio": "pnpm with-env drizzle-kit studio --config src/config.ts",
+    "push": "bun with-env drizzle-kit push --config src/config.ts",
+    "studio": "bun with-env drizzle-kit studio --config src/config.ts",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
     "with-env": "dotenv -e ../../.env --"
   },
@@ -30,16 +27,12 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@insonice/eslint-config": "workspace:*",
-    "@insonice/prettier-config": "workspace:*",
-    "@insonice/tsconfig": "workspace:*",
-    "@types/pg": "^8.11.6",
     "@types/lodash": "^4.17.1",
+    "@types/pg": "^8.11.6",
     "dotenv-cli": "^7.4.2",
     "drizzle-kit": "^0.21.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
-  },
-  "prettier": "@insonice/prettier-config"
+  }
 }

@@ -8,4 +8,6 @@ import { dbPrefix } from "../const";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const pgSqlTable = pgTableCreator((name) => `${dbPrefix}${snakeCase(name)}`);
+export const pgSqlTable = pgTableCreator(
+  (name) => `${dbPrefix}${snakeCase(name)}`,
+);
