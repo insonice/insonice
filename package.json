@@ -20,7 +20,7 @@
     "format:fix": "turbo format --continue -- --write --cache --cache-location node_modules/.cache/.prettiercache",
     "lint": "turbo lint --continue -- --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
-    "lint:ws": "bunx sherif@latest",
+    "lint:ws": "bun x sherif",
     "postinstall": "bun lint:ws",
     "typecheck": "turbo typecheck",
     "ui-add": "cd packages/ui && bun ui-add"

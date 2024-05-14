@@ -10,12 +10,13 @@
     }
   },
   "scripts": {
-    "start": "bun run src/index.ts",
+    "with-env": "dotenv -e ../../.env --",
+    "start": "bun with-env bun run src/index.ts",
     "clean": "rm -rf .turbo node_modules",
-    "format": "prettier --write . --ignore-path ../../.gitignore",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "format": "prettier --write . --ignore-path ../../.gitignore"
   },
   "dependencies": {
+    "@hono/node-server": "^1.11.1",
     "@insonice/auth": "workspace:*",
     "@insonice/db": "workspace:*",
     "@insonice/validators": "workspace:*",
