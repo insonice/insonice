@@ -2,7 +2,7 @@
   "name": "insonice",
   "private": true,
   "engines": {
-    "node": ">=20"
+    "node": "^18.11 || >=20"
   },
   "workspaces": [
     "packages/*",

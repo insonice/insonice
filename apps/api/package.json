@@ -11,21 +11,25 @@
   },
   "scripts": {
     "with-env": "dotenv -e ../../.env --",
-    "start": "bun with-env bun run src/index.ts",
+    "start": "bun run src/index.ts",
+    "dev": "bun run --hot src/index.ts",
     "clean": "rm -rf .turbo node_modules",
     "format": "prettier --write . --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.1",
     "@insonice/auth": "workspace:*",
+    "dotenv": "^16.4.5",
     "@insonice/db": "workspace:*",
     "@insonice/validators": "workspace:*",
     "hono": "^4.3.6",
     "superjson": "^2.2.1",
+    "jiti": "^1.21.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
+    "@types/bun": "^1.1.2",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   }

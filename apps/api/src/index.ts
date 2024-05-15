@@ -1,49 +1,15 @@
-import { Hono } from "hono";
-import { cors } from "hono/cors";
-import { logger } from "hono/logger";
-import { prettyJSON } from "hono/pretty-json";
-import { timing } from "hono/timing";
-import { db } from '@insonice/db'
+import { fileURLToPath } from "url";
+import createJiti from "jiti";
+import dotenv from  'dotenv'
 
-const app = new Hono();
+dotenv.config({ path: '../../.env', override: true, debug: true })
 
-app
-  .use(logger())
-  .use(prettyJSON())
-  .use(timing())
-  .use(
-    "*",
-    cors({
-      allowMethods: ["POST", "GET", "OPTIONS"],
-      credentials: true,
-      origin: (origin) => origin,
-    }),
-  );
+// Import env files to validate at build time. Use jiti so we can load .ts files in here.
+createJiti(fileURLToPath(import.meta.url))("./env");
 
-function isBunRuntime() {
-  return (process.versions && process.versions.bun) || process.env.BUN_INSTALL;
-}
+import { createApp } from "./app";
 
-const users = new Hono()
-
-users.get("", async (c) => {
-  const users = await db.query.users.findMany()
-  return c.json(users)
-})
-
-app.route("users", users)
-
-app.get("/", (c) => {
-  if (isBunRuntime()) {
-    console.log("Running in Bun runtime");
-  } else {
-    console.log("Not running in Bun runtime");
-  }
-
-  return c.json({
-    message: "Hello, World!",
-  });
-});
+const app = await createApp()
 
 export default {
   ...app,
