@@ -1,0 +1,38 @@
+{
+  "name": "@insonice/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "format": "prettier --write . --ignore-path ../../.gitignore",
+    "push": "bun with-env drizzle-kit push --config src/config.ts",
+    "studio": "bun with-env drizzle-kit studio --config src/config.ts",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@planetscale/database": "^1.18.0",
+    "@t3-oss/env-core": "^0.10.1",
+    "drizzle-orm": "^0.30.10",
+    "lodash": "^4.17.21",
+    "pg": "^8.11.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.3",
+    "@types/pg": "^8.11.6",
+    "dotenv-cli": "^7.4.2",
+    "drizzle-kit": "^0.21.2",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
