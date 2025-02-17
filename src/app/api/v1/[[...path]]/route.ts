@@ -1,17 +1,15 @@
 import { handle } from "hono/vercel";
-import { Hono } from "hono";
-import { cors } from "hono/cors";
+import { createServer } from "@/server/app";
 
 export const runtime = "nodejs";
 
-const app = new Hono().basePath("/api/v1");
+const prefix = "/api/v1";
 
-app.use("*", cors());
+const app = createServer(prefix);
 
 const route = app.get("/ping", async c => c.text("pong", 200));
 
-type AppType = typeof route;
-const GET = handle(app);
-const POST = handle(app);
+export const GET = handle(app);
+export const POST = handle(app);
 
-export { GET, POST, type AppType };
+export type AppType = typeof route;
