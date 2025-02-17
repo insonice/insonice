@@ -9,6 +9,13 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "d1_databases": [
+    {
+      "binding": "DATABASE",
+      "database_id": "8e488725-4ba5-4e28-8263-8ebb42e9e20b",
+      "database_name": "insonice"
+    }
+  ],
   "observability": {
     "enabled": true
   },
