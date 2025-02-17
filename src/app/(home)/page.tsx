@@ -1,6 +1,7 @@
 "use client";
 
-import { client } from "@/libs/client";
+import SwitchTheme from "@/components/switch-theme";
+import { client } from "@/server/client";
 import type { InferRequestType } from "hono";
 import useSWR from "swr";
 
@@ -14,5 +15,10 @@ export default function Home() {
 
   if (isLoading) return <div>Loading...</div>;
   if (error || !data) return <div>Error: {error || "no data"}</div>;
-  return <div>API status: {data}</div>;
+  return (
+    <div>
+      <SwitchTheme />
+      API status: {data}
+    </div>
+  );
 }
