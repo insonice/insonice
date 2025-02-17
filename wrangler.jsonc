@@ -9,6 +9,11 @@
     "binding": "ASSETS",
     "directory": ".open-next/assets"
   },
+  "tail_consumers": [
+    {
+      "service": "insonice"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DATABASE",
