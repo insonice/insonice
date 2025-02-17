@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import type { BlankEnv, BlankSchema } from "hono/types";
+import type { BlankEnv, BlankSchema, MergePath } from "hono/types";
 
 /**
  * Create a server with a prefix
@@ -17,5 +17,5 @@ export function createServer<Prefix extends string>(prefix: Prefix) {
   // Routes
   app.get("/ping", async c => c.text("pong", 200));
 
-  return app as Hono<BlankEnv, BlankSchema, Prefix>;
+  return app as Hono<BlankEnv, BlankSchema, MergePath<"/", Prefix>>;
 }
