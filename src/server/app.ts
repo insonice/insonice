@@ -19,7 +19,3 @@ export function createServer<Prefix extends string>(prefix: Prefix) {
 
   return app as Hono<BlankEnv, BlankSchema, MergePath<"/", Prefix>>;
 }
-
-const prefix = "/api/v1";
-
-const app = createServer<typeof prefix>(prefix);
